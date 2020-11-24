@@ -10,16 +10,25 @@ public class Boat : MonoBehaviour
     private Text distanceText;
     private Text progressText;
     private Text scoreText;
-    private GameObject winCanvas;
+    public GameObject winCanvas;
     private GameObject UICanvas;
 
     public float depth = 1f;
     public float floatAmount = 3f;
 
-    private float movementSpeed = 0.02f;
-    private float distance = 5f;
+    public bool win;
+
+    private float movementSpeed = 0.05f;
+    private float distance = 0.3f;
     private float progress = 0f;
-    private int score = 1;
+    public int level = 1;
+    public int score = 1;
+    public int currentScore = 0;
+    public int bounty = 350;
+    public int roundSurvived = 250;
+    public int deaths;
+    public int deathsScore = 1000;
+    public int totalScore;
 
     private void Start()
     {
@@ -29,7 +38,6 @@ public class Boat : MonoBehaviour
         distanceText = GameObject.Find("Distance").GetComponent<Text>();
         progressText = GameObject.Find("Progress").GetComponent<Text>();
         scoreText = GameObject.Find("Score").GetComponent<Text>();
-        winCanvas = GameObject.Find("WinScreen");
         UICanvas = GameObject.Find("UI");
     }
 
@@ -61,6 +69,43 @@ public class Boat : MonoBehaviour
     private void Win()
     {
         UICanvas.SetActive(false);
-        winCanvas.SetActive(true);
+        winCanvas.transform.GetChild(0).gameObject.SetActive(true);
+        //WinScreen.Instance.StartCoroutine(WinScreen.Instance.WinAnimation());
+        win = true;
+        //StartCoroutine(Calculations());
+
+        //currentScore += score;
+        roundSurvived *= level;
+        //bounty *= 3;
+
+        if (deaths > 0)
+        {
+            deathsScore /= deaths;
+        }
+
+        totalScore = currentScore + score + bounty + roundSurvived + deathsScore;
     }
+
+    //private IEnumerator Calculate()
+    //{
+    //    Calculations();
+    //    yield break;
+    //}
+
+    //private IEnumerator Calculations()
+    //{
+    //    currentScore += score;
+    //    roundSurvived *= level;
+    //    bounty *= 3;
+
+    //    if (deaths > 0)
+    //    {
+    //        deathsScore /= deaths;
+    //    }
+
+    //    totalScore = currentScore + score + bounty + roundSurvived + deathsScore;
+    //    yield return new WaitForSeconds(500);
+
+    //    //currentScore = totalScore;
+    //}
 }
