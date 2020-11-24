@@ -9,13 +9,16 @@ public class Boat : MonoBehaviour
     private Rigidbody rb;
     private Text distanceText;
     private Text progressText;
+    private Text scoreText;
+    private GameObject winCanvas;
 
     public float depth = 1f;
     public float floatAmount = 3f;
 
-    private float movementSpeed = 0.01f;
+    private float movementSpeed = 0.02f;
     private float distance = 5f;
     private float progress = 0f;
+    private int score = 1;
 
     private void Start()
     {
@@ -24,6 +27,8 @@ public class Boat : MonoBehaviour
 
         distanceText = GameObject.Find("Distance").GetComponent<Text>();
         progressText = GameObject.Find("Progress").GetComponent<Text>();
+        scoreText = GameObject.Find("Score").GetComponent<Text>();
+        winCanvas = GameObject.Find("WinScreen");
     }
 
     private void Update()
@@ -32,9 +37,14 @@ public class Boat : MonoBehaviour
         {
             progress += movementSpeed * Time.deltaTime;
         }
+        else
+        {
+            scoreText.text = "Level Cleared";
+        }
 
         progressText.text = progress.ToString("F1") + " /";
         distanceText.text = distance.ToString() + " Km";
+        scoreText.text = "Score: " + score.ToString("000000");
     }
 
     private void FixedUpdate()
