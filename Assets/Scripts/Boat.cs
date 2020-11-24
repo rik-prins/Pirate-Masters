@@ -11,6 +11,7 @@ public class Boat : MonoBehaviour
     private Text progressText;
     private Text scoreText;
     private GameObject winCanvas;
+    private GameObject UICanvas;
 
     public float depth = 1f;
     public float floatAmount = 3f;
@@ -29,6 +30,7 @@ public class Boat : MonoBehaviour
         progressText = GameObject.Find("Progress").GetComponent<Text>();
         scoreText = GameObject.Find("Score").GetComponent<Text>();
         winCanvas = GameObject.Find("WinScreen");
+        UICanvas = GameObject.Find("UI");
     }
 
     private void Update()
@@ -39,7 +41,7 @@ public class Boat : MonoBehaviour
         }
         else
         {
-            scoreText.text = "Level Cleared";
+            Win();
         }
 
         progressText.text = progress.ToString("F1") + " /";
@@ -54,5 +56,11 @@ public class Boat : MonoBehaviour
             float sinkAmount = Mathf.Clamp01(-transform.position.y / depth) * floatAmount;
             rb.AddForce(new Vector3(0f, Mathf.Abs(Physics.gravity.y) * sinkAmount, 0f), ForceMode.Acceleration);
         }
+    }
+
+    private void Win()
+    {
+        UICanvas.SetActive(false);
+        winCanvas.SetActive(true);
     }
 }
