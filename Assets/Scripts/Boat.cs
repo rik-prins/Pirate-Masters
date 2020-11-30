@@ -11,7 +11,7 @@ public class Boat : MonoBehaviour
     private Text progressText;
     private Text scoreText;
     public GameObject winCanvas;
-    private GameObject UICanvas;
+    public GameObject UICanvas;
 
     public float depth = 1f;
     public float floatAmount = 3f;
@@ -19,8 +19,10 @@ public class Boat : MonoBehaviour
     public bool win;
 
     private float movementSpeed = 0.05f;
-    private float distance = 0.3f;
-    private float progress = 0f;
+
+    public float distance = 1f;
+
+    public float progress = 0f;
     public int level = 1;
     public int score = 1;
     public int currentScore = 0;
@@ -50,10 +52,11 @@ public class Boat : MonoBehaviour
         else
         {
             Win();
+            win = true;
         }
 
         progressText.text = progress.ToString("F1") + " /";
-        distanceText.text = distance.ToString() + " Km";
+        distanceText.text = distance.ToString("F1") + " Km";
         scoreText.text = "Score: " + score.ToString("000000");
     }
 
@@ -71,19 +74,20 @@ public class Boat : MonoBehaviour
         UICanvas.SetActive(false);
         winCanvas.transform.GetChild(0).gameObject.SetActive(true);
         //WinScreen.Instance.StartCoroutine(WinScreen.Instance.WinAnimation());
-        win = true;
         //StartCoroutine(Calculations());
 
-        //currentScore += score;
-        roundSurvived *= level;
-        //bounty *= 3;
-
-        if (deaths > 0)
+        if (win == true)
         {
-            deathsScore /= deaths;
-        }
+            roundSurvived = 250 * level;
+            bounty = 350 * 2 * level;
 
-        totalScore = currentScore + score + bounty + roundSurvived + deathsScore;
+            if (deaths > 0)
+            {
+                deathsScore /= deaths;
+            }
+
+            totalScore = currentScore + score + bounty + roundSurvived + deathsScore;
+        }
     }
 
     //private IEnumerator Calculate()

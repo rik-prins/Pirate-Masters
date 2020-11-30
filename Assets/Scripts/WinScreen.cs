@@ -74,4 +74,24 @@ public class WinScreen : MonoBehaviour
             }
         }
     }
+
+    public void NextLevel()
+    {
+        Boat.Instance.win = false;
+        transform.GetChild(0).gameObject.SetActive(false);
+        Boat.Instance.UICanvas.SetActive(true);
+        Boat.Instance.level += 1;
+        Boat.Instance.currentScore = Boat.Instance.totalScore;
+        Boat.Instance.score = 0;
+        Boat.Instance.deaths = 0;
+        Boat.Instance.distance *= 1.5f;
+        Boat.Instance.progress = 0;
+        child = 1;
+
+        for (int i = 2; i < 8; i++)
+        {
+            transform.GetChild(0).transform.GetChild(i).gameObject.GetComponent<Text>().text = " ";
+            transform.GetChild(0).transform.GetChild(i).gameObject.GetComponent<Text>().fontSize = 0;
+        }
+    }
 }
