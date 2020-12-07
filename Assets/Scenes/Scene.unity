@@ -2204,10 +2204,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8921875292384646915, guid: effd6ab4447b94f498122a250952dc56, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 8921875292384646913, guid: effd6ab4447b94f498122a250952dc56, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: d14fd9d4269e67743a3646527ed2f869, type: 2}
     - target: {fileID: 8921875292384646918, guid: effd6ab4447b94f498122a250952dc56, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2255,10 +2255,6 @@ PrefabInstance:
     - target: {fileID: 8921875292384646925, guid: effd6ab4447b94f498122a250952dc56, type: 3}
       propertyPath: m_Name
       value: Ocean
-      objectReference: {fileID: 0}
-    - target: {fileID: 8921875292384646925, guid: effd6ab4447b94f498122a250952dc56, type: 3}
-      propertyPath: m_TagString
-      value: Sea
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: effd6ab4447b94f498122a250952dc56, type: 3}
