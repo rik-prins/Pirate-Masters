@@ -11,25 +11,23 @@ public class Player : MonoBehaviour
     public float smoothMoveTime = 0.1f;
     public float turnSpeed = 8;
 
-    float angle;
-    float smoothInputMagnitude;
-    float smoothMoveVelocity;
+    private float angle;
+    private float smoothInputMagnitude;
+    private float smoothMoveVelocity;
 
+    private Vector3 velocity;
 
-    Vector3 velocity;
+    private Rigidbody rb;
 
-    Rigidbody rb;
-
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Update()
     {
         Vector3 _inputDirection = Vector3.zero;
         _inputDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-
 
         float _inputMagnitude = _inputDirection.magnitude;
         smoothInputMagnitude = Mathf.SmoothDamp(smoothInputMagnitude, _inputMagnitude, ref smoothMoveVelocity, smoothMoveTime);
@@ -38,23 +36,31 @@ public class Player : MonoBehaviour
         angle = Mathf.LerpAngle(angle, _targetAngle, Time.deltaTime * turnSpeed * _inputMagnitude);
 
         velocity = transform.forward * moveSpeed * smoothInputMagnitude;
-        
+
         if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
         {
-            rb.constraints = RigidbodyConstraints.FreezePositionZ | 
-                             RigidbodyConstraints.FreezePositionX | 
-                             RigidbodyConstraints.FreezeRotationX | 
-                             RigidbodyConstraints.FreezeRotationY | 
+            rb.constraints = RigidbodyConstraints.FreezePositionZ |
+                             RigidbodyConstraints.FreezePositionX |
+                             RigidbodyConstraints.FreezeRotationX |
+                             RigidbodyConstraints.FreezeRotationY |
                              RigidbodyConstraints.FreezeRotationZ;
         }
         else
             rb.constraints = RigidbodyConstraints.None;
-
     }
 
     private void FixedUpdate()
     {
         rb.MoveRotation(Quaternion.Euler(Vector3.up * angle));
         rb.MovePosition(rb.position + velocity * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Sea"))
+        {
+            Boat.Instance.deaths += 1;
+            transform.position = new Vector3(0, 6, 24);
+        }
     }
 }
