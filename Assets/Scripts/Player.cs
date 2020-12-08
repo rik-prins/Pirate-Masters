@@ -47,12 +47,30 @@ public class Player : MonoBehaviour
         }
         else
             rb.constraints = RigidbodyConstraints.None;
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            Scrubbing();
+        }
+        else
+        {
+            moveSpeed = 7.5f;
+        }
     }
 
     private void FixedUpdate()
     {
         rb.MoveRotation(Quaternion.Euler(Vector3.up * angle));
         rb.MovePosition(rb.position + velocity * Time.deltaTime);
+    }
+
+    private void Scrubbing()
+    {
+        if (Boat.Instance.win == false)
+        {
+            Boat.Instance.score += 1;
+            moveSpeed = 0.5f;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
