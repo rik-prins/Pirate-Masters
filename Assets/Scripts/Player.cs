@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
-    public event System.Action OnReachedExit;
-
     public float moveSpeed = 7.5f;
     public float smoothMoveTime = 0.1f;
     public float turnSpeed = 8;
@@ -18,6 +16,8 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
 
     private Rigidbody rb;
+
+    public GameObject canonBall;
 
     private void Start()
     {
@@ -79,6 +79,18 @@ public class Player : MonoBehaviour
         {
             Boat.Instance.deaths += 1;
             transform.position = new Vector3(0, 6, 24);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Canon"))
+        {
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                Debug.Log("Shoot!");
+                Instantiate(canonBall, other.gameObject.transform.position, other.gameObject.transform.rotation);
+            }
         }
     }
 }

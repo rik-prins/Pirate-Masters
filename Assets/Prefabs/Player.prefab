@@ -48,6 +48,7 @@ MonoBehaviour:
   moveSpeed: 7.5
   smoothMoveTime: 0.1
   turnSpeed: 8
+  canonBall: {fileID: 7268183874050003660, guid: 8fdd3faf7d839b04cb57fc17ad4ba388, type: 3}
 --- !u!54 &9039374605215809938
 Rigidbody:
   m_ObjectHideFlags: 0
