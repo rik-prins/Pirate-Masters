@@ -6,7 +6,7 @@ public class Canonball : MonoBehaviour
 {
     private void Start()
     {
-        GetComponent<Rigidbody>().AddForce(0, 500, 2000);
+        GetComponent<Rigidbody>().AddForce(Vector3.forward * 2000);
     }
 
     private void Update()
