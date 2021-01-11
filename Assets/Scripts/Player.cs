@@ -13,7 +13,10 @@ public class Player : MonoBehaviour
     private float angle;
     private float smoothInputMagnitude;
     private float smoothMoveVelocity;
-    private bool canonActive;
+    
+    [SerializeField] private bool canonActive;
+    [SerializeField] private float nextTimeToFire;
+    [SerializeField] private float fireRate;
 
     private Vector3 velocity;
     private Vector3 camPos;
@@ -23,6 +26,8 @@ public class Player : MonoBehaviour
     public CinemachineVirtualCamera cam;
 
     public GameObject canonBall;
+    
+
 
     private void Start()
     {
@@ -79,6 +84,11 @@ public class Player : MonoBehaviour
             //cam.transform.position = camPos;
             cam.transform.position = Vector3.Lerp(cam.transform.position, camPos, 10f * Time.deltaTime);
         }
+
+        if (Input.GetMouseButton(0) && Time.time >= nextTimeToFire)
+        {
+            Shoot();
+        }
     }
 
     private void FixedUpdate()
@@ -108,9 +118,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    public Collider cannon;
+    private void OnTriggerStay(Collider m_cannon)
     {
-        if (other.CompareTag("Canon"))
+        cannon = m_cannon;
+        if (cannon.CompareTag("Canon"))
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -121,22 +133,27 @@ public class Player : MonoBehaviour
                 else
                 {
                     canonActive = false;
-                    other.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    cannon.transform.rotation = Quaternion.Euler(0, 0, 0);
                 }
             }
 
             if (canonActive)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                other.gameObject.transform.LookAt(ray.GetPoint(100f));
-                //cam.LookAt = null;
-                //cam.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
-
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Instantiate(canonBall, other.gameObject.transform.position, other.gameObject.transform.rotation);
-                }
+                cannon.gameObject.transform.LookAt(ray.GetPoint(100f));
             }
+        }
+
+    }
+
+    private void Shoot()
+    {
+        if (canonActive)
+        {
+            //cam.LookAt = null;
+            //cam.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+            Instantiate(canonBall, cannon.gameObject.transform.position, cannon.gameObject.transform.rotation);
+            nextTimeToFire = Time.time + 1f / fireRate;
         }
     }
 }

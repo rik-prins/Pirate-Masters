@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Canonball : MonoBehaviour
 {
-    //private void Start()
-    //{
-    //    GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 2000);
-    //    Destroy(gameObject, 4);
-    //}
+    private void Start()
+    {
+        //GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 2000);
+        Destroy(gameObject, 10);
+    }
 
     //private void Update()
     //{

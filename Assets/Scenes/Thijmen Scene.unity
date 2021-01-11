@@ -939,7 +939,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006170355}
-  m_LocalRotation: {x: 0.06621784, y: 0.019717338, z: -0.0013087679, w: 0.9976095}
+  m_LocalRotation: {x: 0.06621784, y: 0.019717341, z: -0.0013087682, w: 0.9976095}
   m_LocalPosition: {x: 1.5, y: 18.2, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2378,7 +2378,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864414632}
-  m_LocalRotation: {x: 0.06621784, y: 0.019717338, z: -0.0013087679, w: 0.9976095}
+  m_LocalRotation: {x: 0.06621784, y: 0.019717341, z: -0.0013087682, w: 0.9976095}
   m_LocalPosition: {x: 1.5, y: 18.2, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3005,18 +3005,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1864414633}
-    - target: {fileID: 9039374605215809939, guid: 5cb0ecb3c6c89044aad49e6759e9851e, type: 3}
-      propertyPath: fireRate
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 9039374605215809939, guid: 5cb0ecb3c6c89044aad49e6759e9851e, type: 3}
-      propertyPath: canonActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9039374605215809939, guid: 5cb0ecb3c6c89044aad49e6759e9851e, type: 3}
-      propertyPath: nextTimeToFire
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9039374605215809941, guid: 5cb0ecb3c6c89044aad49e6759e9851e, type: 3}
       propertyPath: m_Name
       value: Player
