@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
                 //cam.LookAt = null;
                 //cam.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
 
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonDown(0))
                 {
                     Instantiate(canonBall, other.gameObject.transform.position, other.gameObject.transform.rotation);
                 }
