@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -12,16 +13,21 @@ public class Player : MonoBehaviour
     private float angle;
     private float smoothInputMagnitude;
     private float smoothMoveVelocity;
+    private bool canonActive;
 
     private Vector3 velocity;
+    private Vector3 camPos;
 
     private Rigidbody rb;
+
+    public CinemachineVirtualCamera cam;
 
     public GameObject canonBall;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        camPos = cam.transform.position;
     }
 
     private void Update()
@@ -56,12 +62,32 @@ public class Player : MonoBehaviour
         {
             moveSpeed = 7.5f;
         }
+
+        if (canonActive)
+        {
+            cam.LookAt = null;
+            cam.transform.position = Vector3.Lerp(cam.transform.position, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z - 0.1f), 10f * Time.deltaTime);
+            if (Vector3.Distance(cam.transform.position, transform.position) <= 2)
+            {
+                cam.transform.position = new Vector3(transform.position.x, transform.position.y + 0.6f, transform.position.z);
+                cam.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
+        else
+        {
+            cam.LookAt = this.transform;
+            //cam.transform.position = camPos;
+            cam.transform.position = Vector3.Lerp(cam.transform.position, camPos, 10f * Time.deltaTime);
+        }
     }
 
     private void FixedUpdate()
     {
-        rb.MoveRotation(Quaternion.Euler(Vector3.up * angle));
-        rb.MovePosition(rb.position + velocity * Time.deltaTime);
+        if (!canonActive)
+        {
+            rb.MoveRotation(Quaternion.Euler(Vector3.up * angle));
+            rb.MovePosition(rb.position + velocity * Time.deltaTime);
+        }
     }
 
     private void Scrubbing()
@@ -86,10 +112,30 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Canon"))
         {
-            if (Input.GetKeyUp(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                Debug.Log("Shoot!");
-                Instantiate(canonBall, other.gameObject.transform.position, other.gameObject.transform.rotation);
+                if (!canonActive)
+                {
+                    canonActive = true;
+                }
+                else
+                {
+                    canonActive = false;
+                    other.transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
+            }
+
+            if (canonActive)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                other.gameObject.transform.LookAt(ray.GetPoint(100f));
+                //cam.LookAt = null;
+                //cam.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    Instantiate(canonBall, other.gameObject.transform.position, other.gameObject.transform.rotation);
+                }
             }
         }
     }
