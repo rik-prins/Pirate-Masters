@@ -1136,7 +1136,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006170355}
-  m_LocalRotation: {x: 0.06621784, y: 0.019717341, z: -0.0013087682, w: 0.9976095}
+  m_LocalRotation: {x: 0.06621784, y: 0.019717338, z: -0.0013087679, w: 0.9976095}
   m_LocalPosition: {x: 1.5, y: 18.2, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1292,6 +1292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1073872672}
   - component: {fileID: 1073872671}
+  - component: {fileID: 1073872673}
   m_Layer: 0
   m_Name: Sky and Fog Volume
   m_TagString: Untagged
@@ -1330,6 +1331,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1073872673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073872670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049cf89c58a999843afddc12e00bcce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1081057205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,7 +2603,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864414632}
-  m_LocalRotation: {x: 0.06621784, y: 0.019717341, z: -0.0013087682, w: 0.9976095}
+  m_LocalRotation: {x: 0.06621784, y: 0.019717338, z: -0.0013087679, w: 0.9976095}
   m_LocalPosition: {x: 1.5, y: 18.2, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
