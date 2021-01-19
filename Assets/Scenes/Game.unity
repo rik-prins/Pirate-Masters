@@ -137,6 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 331113229}
+  - component: {fileID: 331113230}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -158,6 +159,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &331113230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331113228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b093965fc5ab74e897e1f9e42f5b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boat: {fileID: 4754387791081868323}
+  boatObj: {fileID: 1527289188}
+  spawnAmount: 3
+  spawnMoment: []
 --- !u!1001 &334818396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1119,7 +1136,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006170355}
-  m_LocalRotation: {x: 0.06621784, y: 0.019717338, z: -0.0013087679, w: 0.9976095}
+  m_LocalRotation: {x: 0.06621784, y: 0.019717341, z: -0.0013087682, w: 0.9976095}
   m_LocalPosition: {x: 1.5, y: 18.2, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1931,6 +1948,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3482083817978832084, guid: dd273b2bab8ed9b47b465c87fdb0beab, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dd273b2bab8ed9b47b465c87fdb0beab, type: 3}
+--- !u!1 &1527289188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4365027186878355851, guid: dd273b2bab8ed9b47b465c87fdb0beab, type: 3}
+  m_PrefabInstance: {fileID: 1527289187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1535975393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,7 +2590,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864414632}
-  m_LocalRotation: {x: 0.06621784, y: 0.019717338, z: -0.0013087679, w: 0.9976095}
+  m_LocalRotation: {x: 0.06621784, y: 0.019717341, z: -0.0013087682, w: 0.9976095}
   m_LocalPosition: {x: 1.5, y: 18.2, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3116,6 +3138,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7a51f620c329f64f9c0e60242b4cae0, type: 3}
+--- !u!114 &4754387791081868323 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4754387792660483846, guid: c7a51f620c329f64f9c0e60242b4cae0, type: 3}
+  m_PrefabInstance: {fileID: 4754387791081868322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9900fdbdf615c1742a105bceabd28527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9039374605608586262
 PrefabInstance:
   m_ObjectHideFlags: 0

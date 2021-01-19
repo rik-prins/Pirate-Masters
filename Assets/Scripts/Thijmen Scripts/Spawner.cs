@@ -9,9 +9,8 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private int spawnAmount = 3;
     [SerializeField] private float[] spawnMoment;
-    int i;
 
-    void Start()
+    private void Start()
     {
         spawnMoment = new float[spawnAmount];
         CalculateSpawnMoments();
@@ -19,7 +18,7 @@ public class Spawner : MonoBehaviour
 
     public void CalculateSpawnMoments()
     {
-        for (i = 0; i < spawnAmount; i++)
+        for (int i = 0; i < spawnAmount; i++)
         {
             spawnMoment[i] = Random.Range(0, boat.distance);
 
@@ -28,13 +27,13 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         foreach (float moment in spawnMoment)
         {
-            if (moment == boat.progress)
+            if (Mathf.Abs(moment - boat.progress) <= 0.0001f)
             {
-              print("spawn");
+                print("spawn");
             }
         }
     }
