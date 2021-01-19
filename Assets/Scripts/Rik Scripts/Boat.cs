@@ -6,6 +6,7 @@ using UnityEngine;
 public class Boat : MonoBehaviour
 {
     public static Boat Instance;
+    public Spawner spawner;
     private Rigidbody rb;
     private Text distanceText;
     private Text progressText;
@@ -71,6 +72,7 @@ public class Boat : MonoBehaviour
 
     private void Win()
     {
+        spawner.CalculateSpawnMoments();
         UICanvas.SetActive(false);
         winCanvas.transform.GetChild(0).gameObject.SetActive(true);
         //WinScreen.Instance.StartCoroutine(WinScreen.Instance.WinAnimation());
