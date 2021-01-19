@@ -1291,7 +1291,7 @@ GameObject:
   - component: {fileID: 541291732303314580}
   - component: {fileID: 5794950542246495452}
   m_Layer: 0
-  m_Name: Boot Model
+  m_Name: Enermy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1320,7 +1320,7 @@ Transform:
   - {fileID: 627155202985705423}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 205.7014, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &3110218767943705270
 MonoBehaviour:
   m_ObjectHideFlags: 0
