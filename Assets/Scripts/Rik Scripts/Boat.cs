@@ -72,7 +72,8 @@ public class Boat : MonoBehaviour
 
     private void Win()
     {
-        spawner.CalculateSpawnMoments();
+        //spawner.CalculateSpawnMoments();
+        spawner.MakeRandomPoints();
         UICanvas.SetActive(false);
         winCanvas.transform.GetChild(0).gameObject.SetActive(true);
         //WinScreen.Instance.StartCoroutine(WinScreen.Instance.WinAnimation());
