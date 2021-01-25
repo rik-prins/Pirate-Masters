@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Canonball : MonoBehaviour
 {
+    private float moveDistance;
+
     private void Start()
     {
         //GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 2000);
@@ -31,9 +33,9 @@ public class Canonball : MonoBehaviour
 
     private void Update()
     {
-        float moveDistance = speed * Time.deltaTime;
+        moveDistance = speed * Time.deltaTime;
         CheckCollisions(moveDistance);
-        transform.Translate(Vector3.forward * moveDistance);
+        transform.Translate(Vector3.forward * moveDistance, Space.Self);
     }
 
     private void CheckCollisions(float moveDistance)
@@ -54,6 +56,8 @@ public class Canonball : MonoBehaviour
         //{
         //    damageableObject.TakeHit(damage, hit);
         //}
+        print("Hit Boat");
+
         Destroy(gameObject);
     }
 }
