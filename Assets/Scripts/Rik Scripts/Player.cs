@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private float angle;
     private float smoothInputMagnitude;
     private float smoothMoveVelocity;
-    
+
     [SerializeField] private bool canonActive;
     [SerializeField] private bool isScrubbing;
     [SerializeField] private float nextTimeToFire;
@@ -29,8 +29,6 @@ public class Player : MonoBehaviour
     public CinemachineVirtualCamera cam;
 
     public GameObject canonBall;
-    
-
 
     private void Start()
     {
@@ -62,8 +60,6 @@ public class Player : MonoBehaviour
         }
         else
             rb.constraints = RigidbodyConstraints.None;
-
-        
 
         if (canonActive)
         {
@@ -124,11 +120,12 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Sea"))
         {
             Boat.Instance.deaths += 1;
-            transform.position = new Vector3(0, 6, 24);
+            transform.position = new Vector3(0, 8, 24);
         }
     }
 
     public Collider cannon;
+
     private void OnTriggerStay(Collider m_cannon)
     {
         cannon = m_cannon;
@@ -153,7 +150,6 @@ public class Player : MonoBehaviour
                 cannon.gameObject.transform.LookAt(ray.GetPoint(100f));
             }
         }
-
     }
 
     private void Shoot()
