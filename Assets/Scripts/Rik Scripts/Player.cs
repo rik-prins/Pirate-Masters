@@ -15,11 +15,14 @@ public class Player : MonoBehaviour
     private float smoothMoveVelocity;
     
     [SerializeField] private bool canonActive;
+    [SerializeField] private bool isScrubbing;
     [SerializeField] private float nextTimeToFire;
     [SerializeField] private float fireRate;
 
     private Vector3 velocity;
     private Vector3 camPos;
+
+    private Animator anim;
 
     private Rigidbody rb;
 
@@ -31,6 +34,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         camPos = cam.transform.position;
     }
@@ -59,14 +63,7 @@ public class Player : MonoBehaviour
         else
             rb.constraints = RigidbodyConstraints.None;
 
-        if (Input.GetKey(KeyCode.R))
-        {
-            Scrubbing();
-        }
-        else
-        {
-            moveSpeed = 7.5f;
-        }
+        
 
         if (canonActive)
         {
@@ -89,6 +86,8 @@ public class Player : MonoBehaviour
         {
             Shoot();
         }
+
+        Scrubbing();
     }
 
     private void FixedUpdate()
@@ -102,10 +101,21 @@ public class Player : MonoBehaviour
 
     private void Scrubbing()
     {
-        if (Boat.Instance.win == false)
+        if (Input.GetKey(KeyCode.R))
         {
-            Boat.Instance.score += 1;
-            moveSpeed = 0.5f;
+            isScrubbing = true;
+            if (Boat.Instance.win == false)
+            {
+                Boat.Instance.score += 1;
+                moveSpeed = 0.5f;
+                anim.SetBool("Scrubbing", isScrubbing);
+            }
+        }
+        else
+        {
+            isScrubbing = false;
+            anim.SetBool("Scrubbing", isScrubbing);
+            moveSpeed = 7.5f;
         }
     }
 
